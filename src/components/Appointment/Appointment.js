@@ -1,63 +1,64 @@
-import React , {Fragment} from 'react';
+import React from "react";
 
-import 'components/Appointment/styles.scss';
-import Header from 'components/Appointment/Header';
-import Empty from 'components/Appointment/Empty';
-import Show from 'components/Appointment/Show';
+import "components/Appointment/styles.scss";
+import Header from "components/Appointment/Header";
+import Empty from "components/Appointment/Empty";
+import Show from "components/Appointment/Show";
 import { useVisualMode } from "hooks/useVisualMode";
+import Form from "components/Form";
+import Status from 'components/Appointment/Status';
+
+const EMPTY = "EMPTY";
+const SHOW = "SHOW";
 
 
 
 export default function Appointment(props) {
-  const last = props.id === 'last';
+  function onSave(name, interviewer, id) {
 
-  const EMPTY = 'EMPTY';
-  const SHOW = 'SHOW';
-  const CREATE = 'CREATE';
-  const CANCEL = 'CANCEL';
-  const SAVING = 'SAVING';
-  const EDIT = 'EDIT';
-  const CONFIRM = 'CONFIRM';
+    const interview = {
+      student: name,
+      interviewer
+    };
+    mode.transition('SAVING');
+    props.bookInterview(id, interview).then(() => {mode.transition('SHOW')});
+  }
+ 
+  const mode = useVisualMode(props.interview ? SHOW: EMPTY);
 
-  const mode = useVisualMode(SHOW);
-
-  if (!props.interview) {
-    mode.transition(EMPTY);
-  }
-
-  
-
-  function onAdd() {
-    mode.useVisualMode(CREATE);
-  }
-  function onCancel() {
-    mode.useVisualMode(CANCEL);
-  }
-  function onEdit() {
-    mode.useVisualMode(EDIT);
-  }
-  function onSave() {
-    mode.useVisualMode(SAVING);
-  }
-  function onComplete() {
-    mode.useVisualMode(SAVING);
-  }
-  function onDelete() {
-    mode.useVisualMode(CONFIRM);
+  const onAdd = () => {
+    console.log("onAdd");
+    mode.transition('CREATE');
   }
 
+  const onCancel = () => {
+    mode.back();
+  }
+
+  console.log(props.interview);
+  console.log(mode);
 
   
   return (
-    <Fragment>
-    <Header time={props.time} />
-      {mode === EMPTY && <Empty />}
-      {mode === SHOW && (
-        <Show
+    <React.Fragment>
+      <Header time={props.time} />
+
+      {mode.mode === "EMPTY" && <Empty onAdd={onAdd} />}
+
+      {mode.mode === "CREATE" && <Form
+        name={""}
+        interviewers={props.interviewers}
+        value={0}
+        onSave={onSave}
+        onCancel={onCancel}
+      />}
+      {mode.mode === "SAVING" && (<Status message={'saving'}/>)}
+      {mode.mode === "SHOW" && (
+        < Show
           student={props.interview.student}
           interviewer={props.interview.interviewer}
         />
       )}
-    </Fragment>
+    </React.Fragment>
   );
 }

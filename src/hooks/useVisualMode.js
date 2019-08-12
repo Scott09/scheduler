@@ -38,5 +38,5 @@ export function useVisualMode(targetMode) {
       }
       )
     }
-
+    
 }}

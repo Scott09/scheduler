@@ -12,6 +12,8 @@ export default function Form(props) {
     setInterviewer(null);
   }
 
+
+
   return (
     <main className="appointment__card appointment__card--create">
     <section className="appointment__card-left">
@@ -30,7 +32,7 @@ export default function Form(props) {
     <section className="appointment__card-right">
       <section className="appointment__actions">
         <Button danger onClick={props.onCancel}>Cancel</Button>
-        <Button confirm onClick={() => {props.onSave(name, interviewer, props.id)}}>Save</Button>
+        <Button confirm onClick={(event) => {props.onSave(name, interviewer, props.id)}}>Save</Button>
       </section>
     </section>
   </main>

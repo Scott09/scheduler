@@ -17,6 +17,7 @@ const SHOW = "SHOW";
 export default function Appointment(props) {
 
   function onSave(name, interviewer, id) {
+    if (name && interviewer) {
       const interview = {
         student: name,
         interviewer
@@ -26,6 +27,8 @@ export default function Appointment(props) {
     props.bookInterview(id, interview)
     .then(() => {mode.transition('SHOW')})
     .catch(() => {mode.transition('ERROR_SAVING')});
+    }
+      
   }
  
   const mode = useVisualMode(props.interview ? SHOW: EMPTY);

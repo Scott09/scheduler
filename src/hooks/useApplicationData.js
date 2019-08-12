@@ -63,6 +63,8 @@ useEffect(() => {
 }
 , [])
 
+
+// Make sure that spots are set correctly
 for (let stateDay of state.days) {
   const day = stateDay
   let spots = 0;
@@ -77,6 +79,7 @@ for (let stateDay of state.days) {
 
 
 
+// function to book a new interview and send it into database via axios
 
 const bookInterview = function (id, interview) {
   return axios({
@@ -106,7 +109,7 @@ const bookInterview = function (id, interview) {
   }
 
 
-
+// Function to cancel interview and remove from database
 const cancelInterview = function (id, interview) {
   return axios({
     url: `api/appointments/${id}`,
@@ -133,7 +136,7 @@ const cancelInterview = function (id, interview) {
   });
   }
 
-
+// Function that allows user to edit interviews 
 const editInterview = function (id, interview) {
 
   return axios({
@@ -158,6 +161,8 @@ const editInterview = function (id, interview) {
   });
   }
 
+
+  // return our state, dispatch, and interview functions back to our application 
   return {
     state,
     dispatch,

@@ -1,5 +1,5 @@
 import { useEffect, useReducer } from "react";
-import axios from "axios"
+import axios from "axios";
 
 
 export default function useApplicationData() {
@@ -54,7 +54,7 @@ useEffect(() => {
   Promise.all([
     Promise.resolve(axios.get('/api/days')),
     Promise.resolve(axios.get('/api/appointments')),
-    Promise.resolve(axios.get(' /api/interviewers'))
+    Promise.resolve(axios.get('/api/interviewers'))
   ]
   ).then((all) => {
     dispatch({type:"INIT_DATA", days:all[0].data, appointments: all[1].data, interviewers: all[2].data})

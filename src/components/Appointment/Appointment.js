@@ -16,7 +16,7 @@ const SHOW = "SHOW";
 
 export default function Appointment(props) {
 
-  function onSave(name, interviewer, id) {
+  function onSave(name, interviewer) {
     if (name && interviewer) {
       const interview = {
         student: name,
@@ -24,7 +24,7 @@ export default function Appointment(props) {
       };
       console.log(`interview`, interview);
     mode.transition('SAVING');
-    props.bookInterview(id, interview)
+    props.bookInterview(props.id, interview)
     .then(() => {mode.transition('SHOW')})
     .catch(() => {mode.transition('ERROR_SAVING')});
     }
@@ -67,6 +67,7 @@ export default function Appointment(props) {
   
   return (
     <React.Fragment>
+    <article  class="appointment" data-testid="appointment">
       <Header time={props.time} />
 
       {mode.mode === "EMPTY" && <Empty onAdd={onAdd} />}
@@ -118,7 +119,7 @@ export default function Appointment(props) {
         />
       )}
 
-
+      </article>
     </React.Fragment>
   );
 }

@@ -170,5 +170,4 @@ const editInterview = function (id, interview) {
     cancelInterview,
     editInterview
   }
-
 }

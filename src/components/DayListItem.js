@@ -9,13 +9,24 @@ export default function DayListItem(props) {
     "day-list__item--full": (props.spots === 0)
   });
 
+  let sentence = "";
+
+  if (props.spots === 0) {
+    sentence = "no spots remaining";
+  } if (props.spots === 1) {
+    sentence = `${props.spots} spot remaining`;
+  } else if (props.spots === 2 || props.spots === 3 || props.spots === 4 || props.spots === 5) {
+    sentence = `${props.spots} spots remaining`;
+  }
+  
+
   return (
   <div
   className={dayListClass}
   onClick={ () => props.setDay(props.name) }
   >
     <h2>{props.name}</h2>
-    <h4>{props.spots} spots left</h4>
+    <h4>{sentence}</h4>
   </div>
   );
 }

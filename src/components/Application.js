@@ -3,7 +3,7 @@ import React, {useState, useEffect} from "react";
 import "components/Application.scss";
 import DayList from 'components/DayList';
 import Appointment from 'components/Appointment/Appointment';
-import axios from "axios";
+
 import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 import useApplicationData from 'hooks/useApplicationData';
 

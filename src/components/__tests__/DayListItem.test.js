@@ -1,6 +1,7 @@
 import React from "react";
 
 import { render, cleanup } from "@testing-library/react";
+import { getByText } from "@testing-library/react";
 
 import DayListItem from "components/DayListItem";
 

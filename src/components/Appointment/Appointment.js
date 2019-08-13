@@ -66,8 +66,8 @@ export default function Appointment(props) {
 
   
   return (
-    <React.Fragment>
-    <article  class="appointment" data-testid="appointment">
+    <article>
+  
       <Header time={props.time} />
 
       {mode.mode === "EMPTY" && <Empty onAdd={onAdd} />}
@@ -120,6 +120,6 @@ export default function Appointment(props) {
       )}
 
       </article>
-    </React.Fragment>
+    
   );
 }

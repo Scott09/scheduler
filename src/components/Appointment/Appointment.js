@@ -66,7 +66,7 @@ export default function Appointment(props) {
 
   
   return (
-    <article>
+    <article data-testid="appointment">
   
       <Header time={props.time} />
 

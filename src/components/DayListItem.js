@@ -21,12 +21,13 @@ export default function DayListItem(props) {
   
 
   return (
-  <div
+  <li
   className={dayListClass}
   onClick={ () => props.setDay(props.name) }
+  data-testid = "day"
   >
     <h2>{props.name}</h2>
     <h4>{sentence}</h4>
-  </div>
+  </li>
   );
 }

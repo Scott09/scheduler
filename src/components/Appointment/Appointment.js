@@ -51,7 +51,7 @@ export default function Appointment(props) {
   }
 
   const toDelete = function () {
-    mode.transition("SAVING")
+    mode.transition("DELETING")
     props.cancelInterview(props.id)
       .then(() => {
       mode.transition("EMPTY")
@@ -82,7 +82,9 @@ export default function Appointment(props) {
         onCancel={onCancel}
 
       />}
-      {mode.mode === "SAVING" && (<Status message={'saving'}/>)}
+      {mode.mode === "SAVING" && (<Status message={'Saving'}/>)}
+
+      {mode.mode === "DELETING" && (<Status message={'Deleting'}/>)}
 
       {mode.mode === "SHOW" && (
         < Show
